@@ -38,7 +38,7 @@ class GameOfNim(Game):
     def utility(self, state, player):
         if self.terminal_test(state):
             # player who has to move in terminal state loses
-            return -1 if state.to_move == player else 1
+            return 1 if state.to_move == player else -1
         return 0
 
     def terminal_test(self, state):
@@ -56,8 +56,8 @@ if __name__ == "__main__":
     print(nim.initial.board)
     print(nim.initial.moves)
     print(nim.result(nim.initial, (1,3)))
-    utility = nim.play_game(alpha_beta_player, query_player)
-    if (utility < 0):
-        print("MIN won the game")
-    else:
+    utility = nim.play_game(alpha_beta_player, random_player)
+    if (utility > 0):
         print("MAX won the game")
+    else:
+        print("MIN won the game")
